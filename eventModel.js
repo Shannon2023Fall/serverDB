@@ -1,4 +1,6 @@
-import mongoose from "mongoose"; 
+//Use import instead of require
+import mongoose from 'mongoose'; 
+//Create an event schema
 const eventSchema = mongoose.Schema({
   id:{
     required: false,
@@ -28,7 +30,8 @@ const eventSchema = mongoose.Schema({
     required: false,
     type:Number
   }
-})
+});
 
 //module.exports = mongoose.model("Event", eventSchema)
-export default eventSchema;
+const EventModel = mongoose.model('Event', eventSchema);
+export default EventModel;

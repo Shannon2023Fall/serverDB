@@ -5,26 +5,27 @@ dotenv.config();
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import routes from './routes.js';
+
+const app = express();
+const port = process.env.PORT || 3000;
 const mongoString = process.env.dbURL;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
 database.on('error', (error) => {
-    console.log(error)
-})
+    console.error('Error connecting to the database:', error);
+});
 
-database.once('connected', () => {
-    console.log('Database Connected');
-})
-const app = express();
-app.use(cors())
+database.once('open', () => {
+    console.log('Database connected sucessfully');
+});
+
+app.use(cors());
 app.use(express.json());
+app.use('/api', routes);
 
-import routes from './routes.js';
-
-app.use('/api', routes)
-
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
+app.listen(port, () => {
+    console.log(`Server started at port ${3000}`);
+});
