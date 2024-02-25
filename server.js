@@ -8,8 +8,9 @@ import mongoose from 'mongoose';
 import routes from './routes.js';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; //mongodb://mongo:27017/Shan_FullStack-bootcamp/serverDB
 const mongoString = process.env.dbURL;
+//http://localhost:3000
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -27,5 +28,5 @@ app.use(express.json());
 app.use('/api', routes);
 
 app.listen(port, () => {
-    console.log(`Server started at port ${3000}`);
+    console.log(`Server started at http:// ${3000}`);
 });
