@@ -10,9 +10,8 @@ import routes from './routes.js';
 const app = express();
 const port = process.env.PORT || 3000; //mongodb://mongo:27017/Shan_FullStack-bootcamp/serverDB
 const mongoString = process.env.dbURL;
-//http://localhost:3000
 
-mongoose.connect(mongoString);
+mongoose.connect(mongoString); //connect to a MongoDB cloud
 const database = mongoose.connection;
 
 database.on('error', (error) => {
